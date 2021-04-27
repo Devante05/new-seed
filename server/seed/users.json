@@ -1,0 +1,19 @@
+[
+    {
+        "username": "Devante",
+        "createdAt": 1502293460904,
+        "plantName": "Rose",
+        "location": "Austin",
+        "cost": "50",
+        "description": "These Roses are the best ones you have ever seen"
+    },
+    {
+        "username": "New User",
+        "createdAt": 1502293460904,
+        "plantName": "Pinetree",
+        "location": "Austin",
+        "cost": "30",
+        "description": "These Pinetrees have nice pine cones"
+    }
+    
+]
