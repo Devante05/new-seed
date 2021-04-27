@@ -1,26 +1,49 @@
-import React from 'react'
-import {Card, ListGroup, ListGroupItem} from 'react-bootstrap'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import {Card, } from 'react-bootstrap'
 
-const PostsGrid = () => {
+const PostsGrid = ({plantPosts, title}) => {
+    if (!plantPosts.length) {
+        return <h3>No Thoughts Yet</h3>;
+      }
+
     return (
         <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
-  <Card.Body>
-    <Card.Title>Plant Name</Card.Title>
-    <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
-    </Card.Text>
-  </Card.Body>
-  <ListGroup className="list-group-flush">
-    <ListGroupItem>Cras justo odio</ListGroupItem>
-    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-    <ListGroupItem>Vestibulum at eros</ListGroupItem>
-  </ListGroup>
-  <Card.Body>
-    <Card.Link href="#">Card Link</Card.Link>
-    <Card.Link href="#">Another Link</Card.Link>
-  </Card.Body>
+    <h3>{title}</h3>
+    {plantPosts &&
+      plantPosts.map((post) => (
+        <div key={post.createdAt} className="card mb-3">
+          <p className="card-header">
+          <Link
+                to={`/profile/${post.username}`}
+                style={{ fontWeight: 700 }}
+                className="text-light"
+              >
+            {post.username}'s post on {new Date(parseInt(post.createdAt)).toString()}
+            </Link>{' '}
+            </p>
+            <p className="px-2">
+            {post.plantName}
+            </p>
+            <p className="px-2">
+            {post.location}
+            </p>
+            <p className="px-2">
+            {post.cost}
+            </p>
+            <p className="px-2">
+            {post.description}
+            </p>
+            {post.image &&
+            <p className="px-2">
+              <img 
+                className="mt-3 ml-4 thought-image" 
+                src={post.image} alt="S3 bucket response" 
+              />
+            </p>
+              }
+        </div>
+        ))}
 </Card>
     )
 }
