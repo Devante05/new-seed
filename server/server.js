@@ -8,6 +8,9 @@ const userRoutes = require('./routes/user-routes');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// const app = express();
+
+
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));

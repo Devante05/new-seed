@@ -2,7 +2,7 @@ import React from 'react'
 import { Jumbotron, Container } from 'react-bootstrap';
 
 
-function TheJumbotron() {
+const TheJumbotron = () => {
     return (
         <Jumbotron fluid>
   <Container>

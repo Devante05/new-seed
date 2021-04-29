@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 
-function TheForm() {
+  const TheForm = () => {
 
     const [formState, setFormState] = useState({ username: '', plantName: '' , location: '', cost: '', description: '' });
     const [characterCount, setCharacterCount] = useState(0);
@@ -66,27 +66,43 @@ function TheForm() {
                 <Form className="flex-row justify-center justify-space-between-md align-stretch"
                 onSubmit={handleFormSubmit}>
         <Form.Group >
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+            name = "username" 
+            type="text" 
+            value={formState.username}
+            placeholder="ThePlantFriend7"
+            onChange={handleChange} />
+            
+        </Form.Group>
+        <Form.Group >
             <Form.Label>Plant Name</Form.Label>
             <Form.Control 
+            name = "plantName"
             type="text" 
             value={formState.plantName}
-            placeholder="Eastern Redbud" />
+            placeholder="Eastern Redbud"
+            onChange={handleChange} />
             
         </Form.Group>
         <Form.Group >
             <Form.Label>Location</Form.Label>
-            <Form.Control 
+            <Form.Control
+            name = 'location' 
             type="text" 
             value={formState.location}
-            placeholder="Austin" />
+            placeholder="Austin"
+            onChange={handleChange} />
             
         </Form.Group>
         <Form.Group >
             <Form.Label>Plant/Seed Cost</Form.Label>
-            <Form.Control 
-            type="text" 
-            value={formState.cost}
-            placeholder="$5" />
+            <Form.Control
+            name = 'cost' 
+            type="number" 
+            value= {formState.cost}
+            placeholder="$5"
+            onChange={handleChange} />
             
         </Form.Group>
         <Form.Group >
@@ -95,8 +111,9 @@ function TheForm() {
         Character Count: {characterCount}/280
           {/* {error && <span className="ml-2">Something went wrong...</span>} */}
       </p>
-      <Form.Control placeholder="Description of your plant"
-          name="plantDescripton"
+      <Form.Control 
+          placeholder="Description of your plant"
+          name="description"
           value={formState.description}
           className="form-input col-12 col-md-9"
           onChange={handleChange}>

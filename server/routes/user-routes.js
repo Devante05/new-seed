@@ -25,7 +25,7 @@ router.get('/users', (req, res) => {
 
 // get posts from a user
 router.get('/users/:username', (req, res) => {
-  console.log(`Querying for thought(s) from ${req.params.username}.`);
+  console.log(`Querying for post(s) from ${req.params.username}.`);
   const params = {
     TableName: table,
     KeyConditionExpression: "#un = :user",
