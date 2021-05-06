@@ -1,7 +1,10 @@
 // Load the AWS SDK for Node.js
 var AWS = require('aws-sdk');
 // Set the region 
-AWS.config.update({region: 'us-east-2'});
+AWS.config.update({
+  region: 'us-east-2',
+  endpoint: 'http://localhost:8080'
+});
 
 // Create the DynamoDB service object
 var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
@@ -60,7 +63,7 @@ var params = {
     ReadCapacityUnits: 1,
     WriteCapacityUnits: 1
   },
-  TableName: 'PlantPosts',
+  TableName: 'PlantPosts2',
   StreamSpecification: {
     StreamEnabled: false
   }

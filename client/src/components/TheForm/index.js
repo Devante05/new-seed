@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import {Container, Button, Form } from 'react-bootstrap';
 
 
   const TheForm = () => {
@@ -63,6 +63,7 @@ import { Button, Form } from 'react-bootstrap';
 
 
     return (
+      <Container>
                 <Form className="flex-row justify-center justify-space-between-md align-stretch"
                 onSubmit={handleFormSubmit}>
         <Form.Group >
@@ -146,7 +147,7 @@ import { Button, Form } from 'react-bootstrap';
             Submit
         </Button >
         </Form>
-
+      </Container>
         
     )
 }
