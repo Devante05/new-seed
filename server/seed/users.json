@@ -8,12 +8,36 @@
         "description": "These Roses are the best ones you have ever seen"
     },
     {
-        "username": "New User",
+        "username": "Stew",
         "createdAt": 1502293460904,
-        "plantName": "Pinetree",
+        "plantName": "Water Lilys",
+        "location": "Austin",
+        "cost": "35",
+        "description": "These water lilies are cool"
+    },
+    {
+        "username": "Devan",
+        "createdAt": 1502293460904,
+        "plantName": "Cactus",
+        "location": "Round Rock",
+        "cost": "50",
+        "description": "These Cacti are cool"
+    },
+    {
+        "username": "June",
+        "createdAt": 1502293460904,
+        "plantName": "Dandelions",
+        "location": "Pflugerville",
+        "cost": "30",
+        "description": "These Dandies are wild"
+    },
+    {
+        "username": "Whitney",
+        "createdAt": 1502293460904,
+        "plantName": "Sunflower",
         "location": "Austin",
         "cost": "30",
-        "description": "These Pinetrees have nice pine cones"
+        "description": "These Sunflowers' Sunflower seeds are crazy"
     }
     
 ]

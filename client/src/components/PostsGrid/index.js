@@ -11,36 +11,36 @@ const PostsGrid = ({plantPosts, title}) => {
         <Card style={{ width: '18rem' }}>
     <h3>{title}</h3>
     {plantPosts &&
-      plantPosts.map((post) => (
-        <div key={post.createdAt} className="card mb-3">
+      plantPosts.map((plantPosts) => (
+        <div key={plantPosts.createdAt} className="card mb-3">
           <p className="card-header">
           <Link
-                to={`/profile/${post.username}`}
+                to={`/profile/${plantPosts.username}`}
                 style={{ fontWeight: 700 }}
                 className="text-light"
               >
-            {post.username}'s post on {new Date(parseInt(post.createdAt)).toString()}
+            {plantPosts.username}'s post on {new Date(parseInt(plantPosts.createdAt)).toString()}
             </Link>{' '}
-            {post.image &&
+            {plantPosts.image &&
             <p className="px-2">
               <img 
                 className="mt-3 ml-4 thought-image" 
-                src={post.image} alt="S3 bucket response" 
+                src={plantPosts.image} alt="S3 bucket response" 
               />
             </p>
               }
             </p>
             <p className="px-2">
-            {post.plantName}
+            {plantPosts.plantName}
             </p>
             <p className="px-2">
-            {post.location}
+            {plantPosts.location}
             </p>
             <p className="px-2">
-            {post.cost}
+            {plantPosts.cost}
             </p>
             <p className="px-2">
-            {post.description}
+            {plantPosts.description}
             </p>
             
         </div>

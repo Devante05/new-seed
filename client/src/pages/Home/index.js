@@ -34,7 +34,7 @@ const Home = () => {
           {!isLoaded ? (
             <div>Loading...</div>
           ) : (
-              <PostsGrid plantPosts={plantPosts} title="Plant posts" />
+              <PostsGrid plantPosts={plantPosts} title="plant posts" />
             )}
         </div>
               </Col>

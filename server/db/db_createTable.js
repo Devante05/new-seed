@@ -63,7 +63,7 @@ var params = {
     ReadCapacityUnits: 1,
     WriteCapacityUnits: 1
   },
-  TableName: 'PlantPosts2',
+  TableName: 'PlantPost2',
   StreamSpecification: {
     StreamEnabled: false
   }
