@@ -7,7 +7,7 @@ const awsConfig = {
 };
 AWS.config.update(awsConfig);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
-const table = "PlantPosts";
+const table = "PlantPosts2";
 
 // get all users' posts
 router.get('/users', (req, res) => {
@@ -66,7 +66,6 @@ router.post('/users', (req, res) => {
       "location": req.body.location,
       "cost": req.body.cost,
       "description": req.body.description,
-      "image": req.body.image
     }
   };
   dynamodb.put(params, (err, data) => {

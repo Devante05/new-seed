@@ -1,123 +1,130 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from "react";
+import { useStoreContext } from "../../utils/GlobalState";
+import API from "../../utils/API";
+import { ADD_POST, LOADING } from "../../utils/actions";
 import {Container, Button, Form } from 'react-bootstrap';
+
 
 
   const TheForm = () => {
 
-    const [formState, setFormState] = useState({ username: '', plantName: '' , location: '', cost: '', description: '' });
-    const [characterCount, setCharacterCount] = useState(0);
-    const fileInput = useRef(null);
+  const userRef = useRef();
+  const plantNameRef = useRef();
+  const locationRef = useRef();
+  const costRef = useRef();
+  const descriptionRef = useRef();
+  const [state, dispatch] = useStoreContext();
+  const fileInput = useRef(null);
 
-    const handleChange = event => {
-        if (event.target.value.length <= 280) {
-          setFormState({ ...formState, [event.target.name]: event.target.value });
-          setCharacterCount(event.target.value.length);
-        }
-      };
 
-      const handleImageUpload = event => {
-        event.preventDefault();
-        const data = new FormData();
-        data.append('image', fileInput.current.files[0]);
+      // const handleImageUpload = event => {
+      //   event.preventDefault();
+      //   const data = new FormData();
+      //   data.append('image', fileInput.current.files[0]);
       
-        const postImage = async () => {
-          try {
-            const res = await fetch('/api/file-upload', {
-              mode: 'cors',
-              method: 'POST',
-              body: data
-            })
-            if (!res.ok) throw new Error(res.statusText);
-            const postResponse = await res.json();
-            setFormState({...formState, image: postResponse.Location})
-            console.log("postImage: ", postResponse.Location)
-            return postResponse.Location;
-          } catch (error) {
-            console.log(error);
-          }
-        };
-        postImage();
-      };
+      //   const postImage = async () => {
+      //     try {
+      //       const res = await fetch('/api/file-upload', {
+      //         mode: 'cors',
+      //         method: 'POST',
+      //         body: data
+      //       })
+      //       if (!res.ok) throw new Error(res.statusText);
+      //       const postResponse = await res.json();
+      //       setFormState({...formState, image: postResponse.Location})
+      //       console.log("postImage: ", postResponse.Location)
+      //       return postResponse.Location;
+      //     } catch (error) {
+      //       console.log(error);
+      //     }
+      //   };
+      //   postImage();
+      // };
 
                 // submit form
-        const handleFormSubmit = event => {
-            event.preventDefault();
-            // POST method with formState
-            const postData = async () => {
-            const res = await fetch('/api/users', {
-                method: 'POST',
-                headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formState)
+        const handleSubmit = e => {
+          e.preventDefault();
+          dispatch({ type: LOADING });
+          API.savePost({
+            username: userRef.current.value,
+            plantName: plantNameRef.current.value,
+            location: locationRef.current.value,
+            cost: costRef.current.value,
+            descriptionRef: descriptionRef.current.value,
+          })
+            .then(result => {
+              dispatch({
+                type: ADD_POST,
+                post: result.data
+              });
             })
-            const data = await res.json();
-            console.log(data);
-            }
-            postData();
-            // clear form value
-            setFormState({ username: '', plantName: '' , location: '', cost: '', description: ''});
-            setCharacterCount(0);
+            .catch(err => console.log(err));
+
+            console.log(userRef.current.value)
+            console.log(plantNameRef.current.value)
+            console.log(locationRef.current.value)
+            console.log(costRef.current.value)
+            console.log(descriptionRef.current.value)
+
+          userRef.current.value = "";
+          plantNameRef.current.value = "";
+          locationRef.current.value = "";
+          costRef.current.value = "";
+          descriptionRef.current.value = "";
         };
 
 
     return (
       <Container>
                 <Form className="flex-row justify-center justify-space-between-md align-stretch"
-                onSubmit={handleFormSubmit}>
+                onSubmit={handleSubmit}>
         <Form.Group >
             <Form.Label>Username</Form.Label>
             <Form.Control
-            name = "username" 
-            type="text" 
-            value={formState.username}
-            placeholder="ThePlantFriend7"
-            onChange={handleChange} />
+            required
+            ref = {userRef}
+            placeholder = "GreenTree7"
+            />
             
         </Form.Group>
         <Form.Group >
             <Form.Label>Plant Name</Form.Label>
             <Form.Control 
-            name = "plantName"
-            type="text" 
-            value={formState.plantName}
+            required
+            ref = {plantNameRef}
             placeholder="Eastern Redbud"
-            onChange={handleChange} />
+             />
             
         </Form.Group>
         <Form.Group >
             <Form.Label>Location</Form.Label>
             <Form.Control
-            name = 'location' 
-            type="text" 
-            value={formState.location}
+            required
+            ref = {locationRef}
             placeholder="Austin"
-            onChange={handleChange} />
+             />
             
         </Form.Group>
         <Form.Group >
             <Form.Label>Plant/Seed Cost</Form.Label>
             <Form.Control
-            name = 'cost' 
-            type="number" 
-            value= {formState.cost}
+            required
+            ref = {costRef}
             placeholder="$5"
-            onChange={handleChange} />
+             />
             
         </Form.Group>
         <Form.Group >
             <Form.Label>Description</Form.Label>
-            <p className={`m-0 ${characterCount === 280 ? 'text-error' : ''}`}>
-        Character Count: {characterCount}/280
-          {/* {error && <span className="ml-2">Something went wrong...</span>} */}
-      </p>
+            
+            
+
       <Form.Control 
+          required
+          ref = {descriptionRef}
           placeholder="Description of your plant"
-          name="description"
-          value={formState.description}
           className="form-input col-12 col-md-9"
-          onChange={handleChange}>
+          >
       
           
         
@@ -134,7 +141,7 @@ import {Container, Button, Form } from 'react-bootstrap';
             />
             <button 
               className="btn" 
-              onClick={handleImageUpload} 
+              // onClick={} 
               type="submit"
             >
               Upload
@@ -143,7 +150,7 @@ import {Container, Button, Form } from 'react-bootstrap';
         </Form.Group>
 
         
-        <Button className="btn col-12 col-md-3" type="submit">
+        <Button className="btn col-12 col-md-3" type="submit" >
             Submit
         </Button >
         </Form>
