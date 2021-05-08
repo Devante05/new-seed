@@ -6,7 +6,7 @@ import {useStoreContext} from "../../utils/GlobalState"
 import {  UPDATE_POSTS, LOADING } from "../../utils/actions";
 
 
-const PostsGrid = ({plantPosts, title}) => {
+const PostsGrid = () => {
   const [state, dispatch] = useStoreContext();
 
   // const removePost = id => {
@@ -39,26 +39,21 @@ const PostsGrid = ({plantPosts, title}) => {
 
     return (
       <Container>
-        <h2>Plant Posts</h2>
-        {state.posts.length ? (
         <ListGroup>
           {state.posts.map(post => (
             <ListGroup.Item key={post._id}>
               <strong>
                   {post.title} by {post.author}
                 </strong>
-                <p>{post.desription}</p>
-
-            </ListGroup.Item >
+                <p>{post.description}</p>
+            </ListGroup.Item>
           ))}
         </ListGroup>
-      ) : (
-        <h3>You haven't added any posts yet!</h3>
-      )}
-
-
+        
       </Container>
+
     )
-}
+  }
+
 
 export default PostsGrid
