@@ -41,37 +41,34 @@ import {Container, Button, Form } from 'react-bootstrap';
       //   postImage();
       // };
 
-                // submit form
-        const handleSubmit = e => {
-          e.preventDefault();
-          dispatch({ type: LOADING });
-          API.savePost({
+      const handleSubmit = async e => {
+        e.preventDefault();
+    
+        dispatch({ type: LOADING });
+    
+        try {
+          const response = await API.savePost({
             username: userRef.current.value,
             plantName: plantNameRef.current.value,
             location: locationRef.current.value,
             cost: costRef.current.value,
-            descriptionRef: descriptionRef.current.value,
-          })
-            .then(result => {
-              dispatch({
-                type: ADD_POST,
-                post: result.data
-              });
-            })
-            .catch(err => console.log(err));
-
-            console.log(userRef.current.value)
-            console.log(plantNameRef.current.value)
-            console.log(locationRef.current.value)
-            console.log(costRef.current.value)
-            console.log(descriptionRef.current.value)
-
+            descriptionRef: descriptionRef.current.value
+          });
+    
+          dispatch({type: ADD_POST, post: response.data});
+    
+          // Clear out form
           userRef.current.value = "";
           plantNameRef.current.value = "";
           locationRef.current.value = "";
           costRef.current.value = "";
-          descriptionRef.current.value = "";
-        };
+          descriptionRef.current.value = ""
+        } catch(error) {
+          console.log(error);
+        }
+    
+      };
+
 
 
     return (

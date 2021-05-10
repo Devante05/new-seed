@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import API from "../../utils/API";
 import {Container, ListGroup } from 'react-bootstrap'
 import {useStoreContext} from "../../utils/GlobalState"
-import {  UPDATE_POSTS, LOADING } from "../../utils/actions";
+import {GET_POSTS, REMOVE_POST} from "../../utils/actions";
 
 
 const PostsGrid = () => {
@@ -20,16 +20,18 @@ const PostsGrid = () => {
   //     .catch(err => console.log(err));
   // };
 
-  const getPosts = () => {
-    dispatch({ type: LOADING });
-    API.getPosts()
-      .then(results => {
-        dispatch({
-          type: UPDATE_POSTS,
-          posts: results.data
-        });
-      })
-      .catch(err => console.log(err));
+  const getPosts = async () => {
+    try {
+      const response = await API.getPosts();
+
+      dispatch({
+        type: GET_POSTS,
+        posts: response.data
+      });
+
+    } catch(error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
