@@ -4,6 +4,7 @@ import API from "../../utils/API";
 import {Container, ListGroup } from 'react-bootstrap'
 import {useStoreContext} from "../../utils/GlobalState"
 import {GET_POSTS, REMOVE_POST} from "../../utils/actions";
+import "./index.css"
 
 
 const PostsGrid = () => {
@@ -45,9 +46,16 @@ const PostsGrid = () => {
           {state.posts.map(post => (
             <ListGroup.Item key={post._id}>
               <strong>
-                  {post.title} by {post.author}
+                <ol>
+                  <li>Posted on: {post.date} </li>
+                  <li>Plant/Seed Name: {post.plantName} </li>
+                  <li>Posted by: {post.username} </li>
+                  <li>Location: {post.location} </li>
+                  <li>${post.cost} </li>
+                  <li>Description: {post.description} </li>
+                </ol>
                 </strong>
-                <p>{post.description}</p>
+                
             </ListGroup.Item>
           ))}
         </ListGroup>

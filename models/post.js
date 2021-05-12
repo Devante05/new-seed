@@ -6,7 +6,7 @@ const postSchema = new Schema({
   plantName: { type: String, required: true },
   location: { type: String, required: true },
   cost: { type: String, required: true },
-  description : String,
+  description: { type: String, required: true},
   date: { type: Date, default: Date.now }
 });
 

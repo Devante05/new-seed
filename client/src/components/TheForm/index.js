@@ -52,7 +52,7 @@ import {Container, Button, Form } from 'react-bootstrap';
             plantName: plantNameRef.current.value,
             location: locationRef.current.value,
             cost: costRef.current.value,
-            descriptionRef: descriptionRef.current.value
+            description: descriptionRef.current.value
           });
     
           dispatch({type: ADD_POST, post: response.data});
@@ -113,21 +113,14 @@ import {Container, Button, Form } from 'react-bootstrap';
         </Form.Group>
         <Form.Group >
             <Form.Label>Description</Form.Label>
-            
-            
-
-      <Form.Control 
-          required
-          ref = {descriptionRef}
-          placeholder="Description of your plant"
-          className="form-input col-12 col-md-9"
-          >
-      
-          
-        
-        </Form.Control>
+            <Form.Control
+            required
+            ref = {descriptionRef}
+            placeholder="Describe your plant"
+             />
             
         </Form.Group>
+        
         <Form.Group>
         <label className="form-input col-12  p-1">
             Add an image of your plant: 
@@ -147,7 +140,7 @@ import {Container, Button, Form } from 'react-bootstrap';
         </Form.Group>
 
         
-        <Button className="btn col-12 col-md-3" type="submit" >
+        <Button className="btn-success" type="submit" >
             Submit
         </Button >
         </Form>
