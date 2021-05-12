@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
 import API from "../../utils/API";
 import { ADD_POST, LOADING } from "../../utils/actions";
@@ -16,30 +16,35 @@ import {Container, Button, Form } from 'react-bootstrap';
   const [state, dispatch] = useStoreContext();
   const fileInput = useRef(null);
 
+  const [photoState, setPhotoState] = useState()
 
-      // const handleImageUpload = event => {
-      //   event.preventDefault();
-      //   const data = new FormData();
-      //   data.append('image', fileInput.current.files[0]);
-      
-      //   const postImage = async () => {
-      //     try {
-      //       const res = await fetch('/api/file-upload', {
-      //         mode: 'cors',
-      //         method: 'POST',
-      //         body: data
-      //       })
-      //       if (!res.ok) throw new Error(res.statusText);
-      //       const postResponse = await res.json();
-      //       setFormState({...formState, image: postResponse.Location})
-      //       console.log("postImage: ", postResponse.Location)
-      //       return postResponse.Location;
-      //     } catch (error) {
-      //       console.log(error);
-      //     }
-      //   };
-      //   postImage();
-      // };
+
+
+
+  const handleImageUpload = event => {
+    event.preventDefault();
+
+    const data = new FormData();
+    data.append('image', fileInput.current.files[0]);
+  
+    const postImage = async () => {
+      try {
+        const res = await fetch('/api/photo-upload', {
+          mode: 'cors',
+          method: 'POST',
+          body: data
+        })
+        if (!res.ok) throw new Error(res.statusText);
+        const postResponse = await res.json();
+        setPhotoState({...photoState, image: postResponse.Location})
+        console.log("postImage: ", postResponse.Location)
+        return postResponse.Location;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    postImage();
+  };
 
       const handleSubmit = async e => {
         e.preventDefault();
@@ -131,7 +136,7 @@ import {Container, Button, Form } from 'react-bootstrap';
             />
             <button 
               className="btn" 
-              // onClick={} 
+              onClick={handleImageUpload} 
               type="submit"
             >
               Upload
