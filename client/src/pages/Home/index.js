@@ -3,6 +3,7 @@ import TheJumbotron from "../../components/TheJumbotron"
 import Header from "../../components/Header"
 import PostsGrid from "../../components/PostsGrid"
 import TheForm from "../../components/TheForm/index"
+import Footer from "../../components/Footer/index"
 import {Col, Row, Container} from 'react-bootstrap'
 import "./index.css"
 
@@ -26,7 +27,7 @@ const Home = () => {
               </Col>
 
             </Row>
-            
+            <Footer/>
             
         </div>
     )
