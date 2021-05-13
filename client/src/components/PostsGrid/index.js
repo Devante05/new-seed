@@ -53,6 +53,7 @@ const PostsGrid = () => {
                   <li>Location: {post.location} </li>
                   <li>${post.cost} </li>
                   <li>Description: {post.description} </li>
+                  <li>Image: {post.image} </li>
                 </ol>
                 </strong>
                 

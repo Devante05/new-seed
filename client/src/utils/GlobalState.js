@@ -21,6 +21,7 @@ const initialState = {
     location: "",
     cost: "",
     description: "",
+    image: ""
   },
   favorites: [],
   loading: false
