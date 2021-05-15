@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import API from "../../utils/API";
-import {Container, ListGroup } from 'react-bootstrap'
+import {Card, Container, ListGroup, Row } from 'react-bootstrap'
 import {useStoreContext} from "../../utils/GlobalState"
 import {GET_POSTS, REMOVE_POST} from "../../utils/actions";
 import "./index.css"
@@ -42,24 +42,26 @@ const PostsGrid = () => {
 
     return (
       <Container>
-        <ListGroup>
+        <Row>
           {state.posts.map(post => (
-            <ListGroup.Item key={post._id}>
-              <strong>
-                <ol>
-                  <li>Posted on: {post.date} </li>
-                  <li>Plant/Seed Name: {post.plantName} </li>
-                  <li>Posted by: {post.username} </li>
-                  <li>Location: {post.location} </li>
-                  <li>${post.cost} </li>
-                  <li>Description: {post.description} </li>
-                  <li>Image: {post.image} </li>
-                </ol>
-                </strong>
+            <Card xl = {6} key={post._id}>
+              <Card.Img src = {post.image}></Card.Img>
+              <Card.Body>
+                <Card.Title>Plant/Seed Name: {post.plantName}</Card.Title>
+                <p>Posted on: {post.date}</p>
+                <p>Posted by: {post.username}</p>
+                <p>Location: {post.location}</p>
+                <p>${post.cost}</p>
+                  <Card.Text>Description: {post.description} </Card.Text>
+
+                  </Card.Body>
+                  
                 
-            </ListGroup.Item>
+                
+                
+            </Card>
           ))}
-        </ListGroup>
+        </Row>
         
       </Container>
 
