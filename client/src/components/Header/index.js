@@ -12,6 +12,7 @@ const Header = () => {
     <Nav className="mr-auto">
       <Nav.Link href="#home">Home</Nav.Link>
       <Nav.Link href="#link">Myprofile</Nav.Link>
+      <Nav.Link href="/login">Login</Nav.Link>
       <NavDropdown title="Locations" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Austin</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Pflugerville</NavDropdown.Item>
