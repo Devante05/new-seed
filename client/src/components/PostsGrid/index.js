@@ -45,9 +45,9 @@ const PostsGrid = () => {
         <Row>
           {state.posts.map(post => (
             <Card xl = {6} key={post._id}>
-              <Card.Img src = {post.image}></Card.Img>
+              <Card.Img variant="top" src = {post.image}></Card.Img>
               <Card.Body>
-                <Card.Title>Plant/Seed Name: {post.plantName}</Card.Title>
+                <Card.Title>{post.plantName}</Card.Title>
                 <p>Posted on: {post.date}</p>
                 <p>Posted by: {post.username}</p>
                 <p>Location: {post.location}</p>
