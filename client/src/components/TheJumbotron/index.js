@@ -1,5 +1,5 @@
 import React from 'react'
-import { Jumbotron, Container, Carousel } from 'react-bootstrap';
+import {  Container, Carousel } from 'react-bootstrap';
 import "./index.css"
 
 

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import API from "../../utils/API";
-import {Card, Container, ListGroup, Row } from 'react-bootstrap'
+import {Card, Container, Row } from 'react-bootstrap'
 import {useStoreContext} from "../../utils/GlobalState"
-import {GET_POSTS, REMOVE_POST} from "../../utils/actions";
+import {GET_POSTS } from "../../utils/actions";
 import "./index.css"
 
 
