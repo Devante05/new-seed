@@ -6,12 +6,14 @@ import TheForm from "../../components/TheForm/index"
 import Footer from "../../components/Footer/index"
 import {Col, Row, Container} from 'react-bootstrap'
 import "./index.css"
+import HeaderDiv from '../../components/Header-div';
 
 const Home = () => {
 
 
     return (
         <div>
+            <HeaderDiv/>
             <Header/>
             <TheJumbotron/>
             
