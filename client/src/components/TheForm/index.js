@@ -43,7 +43,9 @@ import {Container, Button, Form } from 'react-bootstrap';
         console.log(error);
       }
     };
+    
     postImage();
+    
   };
 
       const handleSubmit = async e => {
@@ -112,7 +114,7 @@ import {Container, Button, Form } from 'react-bootstrap';
             <Form.Control
             required
             ref = {costRef}
-            placeholder="$5"
+            placeholder="$500"
              />
             
         </Form.Group>

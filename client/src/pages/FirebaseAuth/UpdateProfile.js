@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../../components/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import "./Login.css"
+
 
 const UpdateProfile = () => {
   const emailRef = useRef()
@@ -42,7 +44,7 @@ const UpdateProfile = () => {
   }
 
   return (
-    <>
+    <div className = "divContainer">
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
@@ -82,7 +84,7 @@ const UpdateProfile = () => {
       <div className="w-100 text-center mt-2">
         <Link to="/">Cancel</Link>
       </div>
-    </>
+    </div>
   )
 }
 

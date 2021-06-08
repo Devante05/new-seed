@@ -2,6 +2,8 @@ import React, { useRef, useState,  } from "react"
 import { Form, Button, Card, Alert } from "react-bootstrap"
 import { useAuth } from "../../components/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import "./Login.css"
+
 
 const Signup = () => {
   const emailRef = useRef()
@@ -32,12 +34,12 @@ const Signup = () => {
   }
 
   return (
-    <>
-      <Card>
-        <Card.Body>
+    <div className = "divContainer" >
+      <Card >
+        <Card.Body >
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
+          <Form   onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
@@ -59,7 +61,7 @@ const Signup = () => {
       <div className="w-100 text-center mt-2">
         Already have an account? <Link to="/login">Log In</Link>
       </div>
-    </>
+    </div>
   )
 }
 

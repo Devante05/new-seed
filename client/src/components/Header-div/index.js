@@ -4,11 +4,12 @@ import React from 'react'
  const HeaderDiv = () => {
     return (
         <p>
-            <img
-          className=" w-100"
+            <img 
+          className="headerImg"
           src="./images/planthead.jpeg"
           alt="plant-header"
         />
+       
         </p>
     )
 }

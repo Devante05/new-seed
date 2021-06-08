@@ -19,8 +19,18 @@ app.use('/api/', photoRoutes);
 app.use(routes);
 
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/plantPosts");
+// Connect to the Mongo DB 
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/plantPosts");
+
+// MongoDB docker connection 
+mongoose
+  .connect(
+    'mongodb://mongo:27017/plantPosts',
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
+
 
 // Start the API server
 app.listen(PORT, function() {

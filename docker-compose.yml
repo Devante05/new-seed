@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  client:
+    build: client
+    ports:
+      - 3000:3000
+    stdin_open: true
+    container_name: client
+    restart: always
+    networks:
+      - react-express
+    depends_on:
+      - mongo
+
+  server:
+    container_name: server
+    restart: always
+    build: server
+    ports:
+      - '3001:3001'
+    depends_on:
+      - client
+    networks:
+      - express-mongo
+      - react-express
+    expose: 
+      - 3001
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo:4.2.0
+    networks:
+      - express-mongo
+    expose:
+      - 27017
+networks:
+  react-express:
+  express-mongo:

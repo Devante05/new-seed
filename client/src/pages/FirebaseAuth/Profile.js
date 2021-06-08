@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { Card, Button, Alert } from "react-bootstrap"
 import { useAuth } from "../../components/AuthContext"
 import { Link, useHistory } from "react-router-dom"
+import "./Login.css"
+
 
 const Profile = () => {
   const [error, setError] = useState("")
@@ -20,7 +22,7 @@ const Profile = () => {
   }
 
   return (
-    <>
+    <div className= "divContainer">
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
@@ -36,7 +38,7 @@ const Profile = () => {
           Log Out
         </Button>
       </div>
-    </>
+    </div>
   )
 }
 
