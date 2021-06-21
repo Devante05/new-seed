@@ -18,7 +18,9 @@ import {Container, Button, Form } from 'react-bootstrap';
 
   const [photoState, setPhotoState] = useState()
 
-
+  let url ;
+  let publicView;
+  let link = publicView;
 
 
   const handleImageUpload = event => {
@@ -34,32 +36,82 @@ import {Container, Button, Form } from 'react-bootstrap';
           method: 'POST',
           body: data
         })
+
+        
+
         if (!res.ok) throw new Error(res.statusText);
         const postResponse = await res.json();
         setPhotoState({...photoState, image: postResponse.Location})
+        console.log(postResponse);
+
+
+        const request = window.indexedDB.open("photoStore", 1);
+        request.onupgradeneeded = event => {
+          const db = event.target.result;
+          
+          // Creates an object store with a listID keypath that can be used to query on.
+          const photoStoreStore = db.createObjectStore("photoStore", {keyPath: "listID"});
+          // Creates a statusIndex that we can query on.
+          photoStoreStore.createIndex("statusIndex", "status"); 
+
+          request.onsuccess = () => {
+            const db = request.result;
+            const transaction = db.transaction(['photoStore'], "readwrite");
+            const photoStoreStore = transaction.objectStore('photoStore');
+            const statusIndex = photoStoreStore.index('statusIndex');
+          }
+
+          photoStoreStore.add({ listID: '1', status: postResponse.Location})
+    }
+  
+
+
         console.log("postImage: ", postResponse.Location)
+        let photoURL = {
+          location: postResponse.Location
+        };
+
+        // console.log(photoURL.location)
+        url = photoURL.location
+        console.log("this is url: --->" + url)
         return postResponse.Location;
+      
       } catch (error) {
         console.log(error);
       }
     };
     
     postImage();
+
+    setTimeout(function () {
+      publicView = url;
+      console.log("this is publicView: --->" + publicView)
+
+    }, 6000);
+
+
+    
     
   };
 
       const handleSubmit = async e => {
         e.preventDefault();
+
+        
     
         dispatch({ type: LOADING });
+        
     
         try {
+        
           const response = await API.savePost({
             username: userRef.current.value,
             plantName: plantNameRef.current.value,
             location: locationRef.current.value,
             cost: costRef.current.value,
-            description: descriptionRef.current.value
+            description: descriptionRef.current.value,
+            image: link
+            
           });
     
           dispatch({type: ADD_POST, post: response.data});
@@ -69,7 +121,8 @@ import {Container, Button, Form } from 'react-bootstrap';
           plantNameRef.current.value = "";
           locationRef.current.value = "";
           costRef.current.value = "";
-          descriptionRef.current.value = ""
+          descriptionRef.current.value = "";    
+          fileInput.current.value = "";
         } catch(error) {
           console.log(error);
         }

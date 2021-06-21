@@ -8,7 +8,7 @@ const postSchema = new Schema({
   cost: { type: String, required: true },
   description: { type: String, required: true},
   image: {type: String},
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.toDateString().now() }
 });
 
 const Post = mongoose.model("Post", postSchema);
