@@ -17,12 +17,13 @@ import {Container, Button, Form } from 'react-bootstrap';
   const fileInput = useRef(null);
   const imageRef = useRef();
   const [photoState, setPhotoState] = useState()
+  const [photoUrlState, setPhotoUrlState] = useState();
 
 
 
-  function handleImageUpload() {
+   function handleImageUpload() {
 
-    const data = new FormData();
+    const data =  new FormData();
     data.append('image', fileInput.current.files[0]);
   
     const postImage = async () => {
@@ -36,6 +37,7 @@ import {Container, Button, Form } from 'react-bootstrap';
         if (!res.ok) throw new Error(res.statusText);
           const postResponse = await res.json();
           setPhotoState({...photoState, image: postResponse.Location})
+          setPhotoUrlState({ image: postResponse.Location})
           //  console.log(postResponse);
             console.log(photoState);
         return postResponse.Location;
@@ -51,6 +53,7 @@ import {Container, Button, Form } from 'react-bootstrap';
       const handleSubmit = async e => {
         e.preventDefault();
         handleImageUpload();
+        //temoporary comment out, need to fix global state in utils
         dispatch({ type: LOADING });
         try {
           const response = await API.savePost({
@@ -59,7 +62,7 @@ import {Container, Button, Form } from 'react-bootstrap';
             location: locationRef.current.value,
             cost: costRef.current.value,
             description: descriptionRef.current.value,
-            image: photoState.image
+            image: photoUrlState.image
                     })
           dispatch({type: ADD_POST, post: response.data});
     
@@ -70,6 +73,7 @@ import {Container, Button, Form } from 'react-bootstrap';
           costRef.current.value = "";
           descriptionRef.current.value = "";    
           fileInput.current.value = "";
+          photoUrlState.image = "";
         } 
         catch(error) {
           console.log(error);
@@ -137,13 +141,6 @@ import {Container, Button, Form } from 'react-bootstrap';
               ref={fileInput}
               className="form-input p-2"
             />
-            <button 
-              className="btn" 
-              onClick={handleImageUpload} 
-              type="submit"
-            >
-              Upload
-            </button>
           </label>
         </Form.Group>
 

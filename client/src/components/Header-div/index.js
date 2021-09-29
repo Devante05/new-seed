@@ -9,7 +9,6 @@ import React from 'react'
           src="./images/planthead.jpeg"
           alt="plant-header"
         />
-            
        
         </p>
     )

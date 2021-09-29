@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from 'react-router-dom';
 import API from "../../utils/API";
 import {Card, Container, Row } from 'react-bootstrap'
 import {useStoreContext} from "../../utils/GlobalState"
@@ -45,22 +44,18 @@ const PostsGrid = () => {
         <Row>
           {state.posts.map(post => (
             <Card xl = {6} key={post._id}>
-              <Card.Img variant="top" src = {post.image}></Card.Img>
+              <Card.Img id = "cardImg" variant="top" src = {post.image} ></Card.Img>
               <Card.Body>
                 <Card.Title>{post.plantName}</Card.Title>
                 <p>Posted on: {post.date}</p>
-                <p>Posted by: {post.username}</p>
                 <p>Location: {post.location}</p>
                 <p>${post.cost}</p>
+                <p>Posted by: {post.username}</p>
                   <Card.Text>Description: {post.description} </Card.Text>
-
-                  </Card.Body>
-                  
-                
-                
-                
+              </Card.Body>
             </Card>
-          ))}
+          ))
+          }
         </Row>
         
       </Container>

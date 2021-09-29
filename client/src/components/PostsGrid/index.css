@@ -1,3 +1,11 @@
 Card {
     background-color: white;
 }
+
+#cardImg {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-left: 65px;
+    margin-top: 20px;
+}
