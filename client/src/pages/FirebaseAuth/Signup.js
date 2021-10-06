@@ -25,7 +25,9 @@ const Signup = () => {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      history.push("/")
+      //document.location is to redirect upon login to the authd home page
+      document.location.replace("/home-authd")
+      // history.push("/")
     } catch {
       setError("Failed to create an account")
     }

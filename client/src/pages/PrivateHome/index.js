@@ -4,15 +4,14 @@ import PostsGrid from "../../components/PostsGrid"
 import TheForm from "../../components/TheForm/index"
 import Footer from "../../components/Footer/index"
 import {Col, Row} from 'react-bootstrap'
-import "./index.css"
+import "./style.css"
 import HeaderDiv from '../../components/Header-div';
 import { useAuth } from "../../components/AuthContext";
 
 
-const Home = () => {
+const PrivateHome = () => {
 
-
-const auth = useAuth();
+    const auth = useAuth();
 const user = auth.currentUser;
 
 if (user) {
@@ -25,15 +24,18 @@ if (user) {
   console.log("no user");
 }
 
-   
+
 
     return (
         <div>
             <HeaderDiv/>
             <Header/>
             <TheJumbotron/>
-            <div>Please login or signup to make a post</div>
             <Row className = "rowDiv">
+              <Col lg = {3}>
+              <TheForm/>
+              </Col>
+              
               <Col>
               <div className={`col-12 mb-3 `}>
               <PostsGrid  title="plant posts" />
@@ -47,4 +49,4 @@ if (user) {
     )
 }
 
-export default Home;
+export default PrivateHome;

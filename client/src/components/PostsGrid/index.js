@@ -36,7 +36,7 @@ const PostsGrid = () => {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  });
 
 
     return (
